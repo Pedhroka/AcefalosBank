@@ -1,0 +1,15 @@
+/workspaces/AcefalosBank/bin/Debug/net10.0/AcefalosBank
+/workspaces/AcefalosBank/bin/Debug/net10.0/AcefalosBank.deps.json
+/workspaces/AcefalosBank/bin/Debug/net10.0/AcefalosBank.runtimeconfig.json
+/workspaces/AcefalosBank/bin/Debug/net10.0/AcefalosBank.dll
+/workspaces/AcefalosBank/bin/Debug/net10.0/AcefalosBank.pdb
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.AssemblyInfoInputs.cache
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.AssemblyInfo.cs
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.csproj.CoreCompileInputs.cache
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.sourcelink.json
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.dll
+/workspaces/AcefalosBank/obj/Debug/net10.0/refint/AcefalosBank.dll
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.pdb
+/workspaces/AcefalosBank/obj/Debug/net10.0/AcefalosBank.genruntimeconfig.cache
+/workspaces/AcefalosBank/obj/Debug/net10.0/ref/AcefalosBank.dll
