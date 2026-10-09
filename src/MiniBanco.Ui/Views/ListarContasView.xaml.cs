@@ -28,7 +28,7 @@ public partial class ListarContasView : UserControl
         var contas = _banco.ListarContas().ToList();
 
         Tabela.ItemsSource = contas;
-        TxtQuantidade.Text = contas.Count == 1 ? "1 conta no Mini-Banco" : $"{contas.Count} contas no Mini-Banco";
+        TxtQuantidade.Text = contas.Count == 1 ? "1 conta no Acefalos Bank" : $"{contas.Count} contas no Acefalos Bank";
 
         bool vazio = contas.Count == 0;
         Tabela.Visibility = vazio ? Visibility.Collapsed : Visibility.Visible;

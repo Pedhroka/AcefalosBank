@@ -1,5 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
 
     <!-- Cores -->
     <Color x:Key="CorFundoCor">#E1E6D0</Color>
@@ -102,12 +103,25 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{StaticResource RaioPadrao}">
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                      Focusable="False"
-                                      Padding="{TemplateBinding Padding}"
-                                      VerticalAlignment="Center"/>
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalAlignment="Center"/>
+                            <TextBlock x:Name="Dica"
+                                       Text="{Binding (local:Dica.Texto), RelativeSource={RelativeSource TemplatedParent}}"
+                                       Foreground="{StaticResource CorTextoSecundario}"
+                                       Opacity="0.7"
+                                       Margin="{TemplateBinding Padding}"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False"
+                                       Visibility="Collapsed"/>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="Dica" Property="Visibility" Value="Visible"/>
+                        </Trigger>
                         <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter TargetName="Borda" Property="BorderBrush" Value="{StaticResource CorPrimaria}"/>
                         </Trigger>
