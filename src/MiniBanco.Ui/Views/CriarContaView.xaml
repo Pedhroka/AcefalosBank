@@ -1,6 +1,7 @@
 <UserControl x:Class="MiniBanco.Ui.Views.CriarContaView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
     <StackPanel>
         <TextBlock Text="Criar conta" Style="{StaticResource TituloPagina}"/>
         <TextBlock Text="Cadastre uma nova conta com número, titular e saldo inicial." Style="{StaticResource SubtituloPagina}"/>
@@ -17,14 +18,14 @@
                     <TextBlock Text="Preencha todos os campos para criar a conta." Style="{StaticResource TextoSecundario}"/>
 
                     <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}"/>
+                    <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1006"/>
                     <TextBlock Text="Informe um número inteiro ainda não cadastrado." Style="{StaticResource TextoAjuda}"/>
 
                     <TextBlock Text="Titular" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtTitular" Style="{StaticResource CampoTexto}"/>
+                    <TextBox x:Name="TxtTitular" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: Maria Silva"/>
 
                     <TextBlock Text="Saldo inicial" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtSaldo" Style="{StaticResource CampoTexto}"/>
+                    <TextBox x:Name="TxtSaldo" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: R$ 0,00"/>
                     <TextBlock Text="O saldo inicial pode ser zero." Style="{StaticResource TextoAjuda}"/>
 
                     <Border Style="{StaticResource Separador}"/>

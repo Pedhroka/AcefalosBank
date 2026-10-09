@@ -1,6 +1,7 @@
 <UserControl x:Class="MiniBanco.Ui.Views.DepositarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
     <StackPanel>
         <TextBlock Text="Depositar" Style="{StaticResource TituloPagina}"/>
         <TextBlock Text="Adicione um valor ao saldo de uma conta cadastrada." Style="{StaticResource SubtituloPagina}"/>
@@ -17,11 +18,11 @@
                     <TextBlock Text="Informe a conta e o valor que será depositado." Style="{StaticResource TextoSecundario}"/>
 
                     <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}"/>
-                    <TextBlock Text="A conta deve estar cadastrada no Mini-Banco." Style="{StaticResource TextoAjuda}"/>
+                    <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1002"/>
+                    <TextBlock Text="A conta deve estar cadastrada no Acefalos Bank." Style="{StaticResource TextoAjuda}"/>
 
                     <TextBlock Text="Valor" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtValor" Style="{StaticResource CampoTexto}"/>
+                    <TextBox x:Name="TxtValor" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: R$ 150,00"/>
                     <TextBlock Text="Informe um valor maior que zero." Style="{StaticResource TextoAjuda}"/>
 
                     <Border Style="{StaticResource Separador}"/>

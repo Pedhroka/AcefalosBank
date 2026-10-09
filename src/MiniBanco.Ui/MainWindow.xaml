@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MiniBanco.Ui"
-        Title="Mini-Banco"
+        Title="Acefalos Bank"
         Width="1440" Height="900"
         MinWidth="1100" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -25,10 +25,10 @@
                 <Button Grid.Row="0" Style="{StaticResource BotaoTexto}" Height="Auto" Padding="0" Margin="0,0,0,40" Click="Inicio_Click">
                     <StackPanel Orientation="Horizontal">
                     <Border Width="40" Height="40" Background="{StaticResource CorPrimaria}" CornerRadius="8">
-                        <TextBlock Text="MB" Foreground="White" FontWeight="Bold" FontSize="14"
+                        <TextBlock Text="AB" Foreground="White" FontWeight="Bold" FontSize="14"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-                    <TextBlock Text="Mini-Banco" FontSize="20" FontWeight="Bold"
+                    <TextBlock Text="Acefalos Bank" FontSize="20" FontWeight="Bold"
                                Foreground="{StaticResource CorTexto}" Margin="12,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
@@ -69,23 +69,22 @@
             <Border Grid.Row="0" BorderBrush="{StaticResource CorBorda}" BorderThickness="0,0,0,1" Padding="48,0">
                 <Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Mini-Banco" FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
+                        <TextBlock Text="Acefalos Bank" FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
                         <TextBlock Text="  ›  " FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
                         <TextBlock x:Name="TxtTituloAtual" FontSize="14" FontWeight="SemiBold"
                                    Foreground="{StaticResource CorTexto}"/>
                     </StackPanel>
-                    <Border Style="{StaticResource PilulaCabecalho}" HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <TextBlock Text="Gestão de contas" FontSize="13" Foreground="{StaticResource CorTexto}"/>
-                    </Border>
                 </Grid>
             </Border>
 
             <!-- Conteúdo -->
-            <ContentControl x:Name="Conteudo" Grid.Row="1" Padding="48,40"/>
+            <Border Grid.Row="1" Padding="48,40">
+                <ContentControl x:Name="Conteudo"/>
+            </Border>
 
             <!-- Rodapé -->
             <Grid Grid.Row="2" Margin="48,0,48,16">
-                <TextBlock Text="Mini-Banco • Contas e operações" FontSize="12"
+                <TextBlock Text="Acefalos Bank • Contas e operações" FontSize="12"
                            Foreground="{StaticResource CorTextoSecundario}" HorizontalAlignment="Left"/>
                 <TextBlock Text="Valores em reais (R$)" FontSize="12"
                            Foreground="{StaticResource CorTextoSecundario}" HorizontalAlignment="Right"/>

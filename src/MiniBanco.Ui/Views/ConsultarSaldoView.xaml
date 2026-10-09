@@ -1,6 +1,7 @@
 <UserControl x:Class="MiniBanco.Ui.Views.ConsultarSaldoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
     <StackPanel>
         <TextBlock Text="Consultar saldo" Style="{StaticResource TituloPagina}"/>
         <TextBlock Text="Encontre uma conta pelo número e veja o saldo disponível." Style="{StaticResource SubtituloPagina}"/>
@@ -23,7 +24,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}"/>
+                            <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1001"/>
                             <Button Grid.Column="1" Content="Buscar" Style="{StaticResource BotaoPrimario}"
                                     Margin="12,0,0,0" Click="Buscar_Click"/>
                         </Grid>

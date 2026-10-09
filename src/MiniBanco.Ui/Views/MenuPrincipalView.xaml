@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
         <TextBlock Text="Menu principal" Style="{StaticResource TituloPagina}"/>
-        <TextBlock Text="Escolha o que você deseja fazer no Mini-Banco." Style="{StaticResource SubtituloPagina}"/>
+        <TextBlock Text="Escolha o que você deseja fazer no Acefalos Bank." Style="{StaticResource SubtituloPagina}"/>
 
         <Border Background="{StaticResource CorPrimaria}" CornerRadius="12" Padding="32" Margin="0,0,0,12">
             <StackPanel>
