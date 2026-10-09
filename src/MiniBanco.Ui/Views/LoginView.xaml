@@ -2,21 +2,23 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
-    <Border Style="{StaticResource CardPadrao}">
-        <StackPanel>
-            <TextBlock Text="Acesse sua conta" Style="{StaticResource TituloCard}"/>
-            <TextBlock Text="Informe o número da conta e a senha." Style="{StaticResource TextoSecundario}"/>
+    <StackPanel>
+        <TextBlock Text="Entrar" Style="{StaticResource TituloPagina}"/>
+        <TextBlock Text="Informe o número da sua conta e a senha." Style="{StaticResource SubtituloPagina}"/>
 
-            <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
-            <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1001"/>
+        <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
+        <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1001"/>
 
-            <TextBlock Text="Senha" Style="{StaticResource RotuloCampo}"/>
-            <PasswordBox x:Name="TxtSenha" Style="{StaticResource CampoSenha}"/>
+        <TextBlock Text="Senha" Style="{StaticResource RotuloCampo}"/>
+        <PasswordBox x:Name="TxtSenha" Style="{StaticResource CampoSenha}"/>
 
-            <Button Content="Entrar" Style="{StaticResource BotaoPrimario}" Margin="0,28,0,0" Click="Entrar_Click"/>
-            <Button Content="Criar conta" Style="{StaticResource BotaoSecundario}" Margin="0,12,0,0" Click="CriarConta_Click"/>
+        <Button Content="Entrar" Style="{StaticResource BotaoPrimario}" Margin="0,32,0,0" Click="Entrar_Click"/>
 
-            <TextBlock x:Name="TxtMensagem" Visibility="Collapsed"/>
-        </StackPanel>
-    </Border>
+        <Border Style="{StaticResource Separador}" Margin="0,24"/>
+
+        <TextBlock Text="Ainda não tem conta?" Style="{StaticResource TextoSecundario}" HorizontalAlignment="Center"/>
+        <Button Content="Criar conta" Style="{StaticResource BotaoSecundario}" Margin="0,12,0,0" Click="CriarConta_Click"/>
+
+        <TextBlock x:Name="TxtMensagem" Visibility="Collapsed"/>
+    </StackPanel>
 </UserControl>
