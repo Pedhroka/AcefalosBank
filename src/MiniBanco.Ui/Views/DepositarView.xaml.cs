@@ -25,8 +25,8 @@ public partial class DepositarView : UserControl
             if (!Feedback.TryLerValor(TxtValor.Text, out decimal valor))
                 throw new ArgumentException("Informe um valor válido.");
 
+            _banco.Depositar(numero, valor);
             Conta conta = _banco.BuscarConta(numero);
-            conta.Depositar(valor);
 
             Feedback.Mostrar(TxtMensagem, $"Depósito realizado. Novo saldo: {conta.Saldo:C}", true);
             TxtValor.Clear();
