@@ -1,12 +1,95 @@
-﻿<Window x:Class="MiniBanco.Ui.MainWindow"
+<Window x:Class="MiniBanco.Ui.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiniBanco.Ui"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Mini-Banco"
+        Width="1440" Height="900"
+        MinWidth="1100" MinHeight="720"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource CorFundo}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="256"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Menu lateral -->
+        <Border Grid.Column="0" BorderBrush="{StaticResource CorBorda}" BorderThickness="0,0,1,0" Padding="24">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Style="{StaticResource BotaoTexto}" Height="Auto" Padding="0" Margin="0,0,0,40" Click="Inicio_Click">
+                    <StackPanel Orientation="Horizontal">
+                    <Border Width="40" Height="40" Background="{StaticResource CorPrimaria}" CornerRadius="8">
+                        <TextBlock Text="MB" Foreground="White" FontWeight="Bold" FontSize="14"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Mini-Banco" FontSize="20" FontWeight="Bold"
+                               Foreground="{StaticResource CorTexto}" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="CONTAS E OPERAÇÕES" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{StaticResource CorTextoSecundario}" Margin="16,0,0,12"/>
+                    <RadioButton x:Name="ItemCriar" GroupName="Menu" Tag="criar" Content="Criar conta"
+                                 Style="{StaticResource ItemMenu}" Click="ItemMenu_Click"/>
+                    <RadioButton x:Name="ItemConsultar" GroupName="Menu" Tag="consultar" Content="Consultar saldo"
+                                 Style="{StaticResource ItemMenu}" Click="ItemMenu_Click"/>
+                    <RadioButton x:Name="ItemDepositar" GroupName="Menu" Tag="depositar" Content="Depositar"
+                                 Style="{StaticResource ItemMenu}" Click="ItemMenu_Click"/>
+                    <RadioButton x:Name="ItemSacar" GroupName="Menu" Tag="sacar" Content="Sacar"
+                                 Style="{StaticResource ItemMenu}" Click="ItemMenu_Click"/>
+                    <RadioButton x:Name="ItemListar" GroupName="Menu" Tag="listar" Content="Listar contas"
+                                 Style="{StaticResource ItemMenu}" Click="ItemMenu_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2">
+                    <Border Height="1" Background="{StaticResource CorBorda}" Margin="0,0,0,16"/>
+                    <Button Content="Sair" Style="{StaticResource BotaoTexto}" Click="Sair_Click"/>
+                    <TextBlock Text="Sistema de contas bancárias" FontSize="12"
+                               Foreground="{StaticResource CorTextoSecundario}" Margin="16,16,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Área principal -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Cabeçalho -->
+            <Border Grid.Row="0" BorderBrush="{StaticResource CorBorda}" BorderThickness="0,0,0,1" Padding="48,0">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Mini-Banco" FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
+                        <TextBlock Text="  ›  " FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
+                        <TextBlock x:Name="TxtTituloAtual" FontSize="14" FontWeight="SemiBold"
+                                   Foreground="{StaticResource CorTexto}"/>
+                    </StackPanel>
+                    <Border Style="{StaticResource PilulaCabecalho}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock Text="Gestão de contas" FontSize="13" Foreground="{StaticResource CorTexto}"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Conteúdo -->
+            <ContentControl x:Name="Conteudo" Grid.Row="1" Padding="48,40"/>
+
+            <!-- Rodapé -->
+            <Grid Grid.Row="2" Margin="48,0,48,16">
+                <TextBlock Text="Mini-Banco • Contas e operações" FontSize="12"
+                           Foreground="{StaticResource CorTextoSecundario}" HorizontalAlignment="Left"/>
+                <TextBlock Text="Valores em reais (R$)" FontSize="12"
+                           Foreground="{StaticResource CorTextoSecundario}" HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
