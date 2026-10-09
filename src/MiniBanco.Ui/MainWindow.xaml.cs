@@ -9,11 +9,12 @@ namespace MiniBanco.Ui;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private readonly Banco _banco = new Banco();
+    private readonly Banco _banco;
 
-    public MainWindow()
+    public MainWindow(Banco banco)
     {
         InitializeComponent();
+        _banco = banco;
         Abrir("menu");
     }
 

@@ -25,8 +25,8 @@ public partial class SacarView : UserControl
             if (!Feedback.TryLerValor(TxtValor.Text, out decimal valor))
                 throw new ArgumentException("Informe um valor válido.");
 
+            _banco.Sacar(numero, valor);
             Conta conta = _banco.BuscarConta(numero);
-            conta.Sacar(valor);
 
             Feedback.Mostrar(TxtMensagem, $"Saque realizado. Novo saldo: {conta.Saldo:C}", true);
             TxtValor.Clear();
