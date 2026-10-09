@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using MiniBanco.Core.Dominio;
 
 namespace MiniBanco.Ui.Views;
 
@@ -22,19 +23,12 @@ public partial class SacarView : UserControl
 
     private void Sacar_Click(object sender, RoutedEventArgs e)
     {
-        try
+        Mensagens.Executar(TxtMensagem, () =>
         {
-            if (!Feedback.TryLerValor(TxtValor.Text, out decimal valor))
-                throw new ArgumentException("Informe um valor válido.");
+            _banco.Sacar(_conta.Numero, Entrada.Valor(TxtValor.Text));
 
-            _banco.Sacar(_conta.Numero, valor);
-
-            Feedback.Mostrar(TxtMensagem, $"Saque de {valor:C} realizado. Novo saldo: {_conta.Saldo:C}", true);
             TxtValor.Clear();
-        }
-        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
-        {
-            Feedback.Mostrar(TxtMensagem, ex.Message, false);
-        }
+            return $"Saque realizado. Novo saldo: {_conta.Saldo:C}";
+        });
     }
 }

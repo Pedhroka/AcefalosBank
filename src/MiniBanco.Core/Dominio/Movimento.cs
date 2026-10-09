@@ -1,8 +1,10 @@
 using System;
 
+namespace MiniBanco.Core.Dominio;
+
 public sealed record Movimento(
     DateTime Data,
-    string Descricao,
+    TipoMovimento Tipo,
     int? NumeroContraparte,
     string? NomeContraparte,
     decimal Valor,

@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using MiniBanco.Core.Dominio;
 
 namespace MiniBanco.Ui.Views;
 
@@ -22,22 +23,17 @@ public partial class CriarContaView : UserControl
 
     private void Criar_Click(object sender, RoutedEventArgs e)
     {
-        try
+        bool criada = Mensagens.Executar(TxtMensagem, () =>
         {
-            if (!int.TryParse(TxtNumero.Text, out int numero))
-                throw new ArgumentException("Informe um número inteiro.");
+            int numero = Entrada.Numero(TxtNumero.Text);
             if (TxtSenha.Password != TxtConfirmarSenha.Password)
-                throw new ArgumentException("As senhas não conferem.");
-            if (!Feedback.TryLerValor(TxtSaldo.Text, out decimal saldo))
-                throw new ArgumentException("Informe um saldo inicial válido.");
+                throw new ErroDeNegocio("As senhas não conferem.");
 
-            _banco.CriarConta(numero, TxtTitular.Text, TxtSenha.Password, saldo);
-            ContaCriada?.Invoke(this, numero);
-        }
-        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
-        {
-            Feedback.Mostrar(TxtMensagem, ex.Message, false);
-        }
+            _banco.CriarConta(numero, TxtTitular.Text, TxtSenha.Password, Entrada.Valor(TxtSaldo.Text));
+            return "Conta criada com sucesso.";
+        });
+
+        if (criada) ContaCriada?.Invoke(this, Entrada.Numero(TxtNumero.Text));
     }
 
     private void Voltar_Click(object sender, RoutedEventArgs e)

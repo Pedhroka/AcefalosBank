@@ -4,11 +4,13 @@ using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
+using MiniBanco.Core.Dominio;
+using MiniBanco.Core.Persistencia;
 
 namespace MiniBanco.Ui;
 
 /// <summary>
-/// Inicializa o banco a partir do arquivo JSON e controla a troca entre login e área logada.
+/// Ponto de entrada da interface: configura a cultura, carrega o banco e controla a troca entre login e área logada.
 /// </summary>
 public partial class App : Application
 {
@@ -23,9 +25,9 @@ public partial class App : Application
         {
             banco = new Banco(new RepositorioContas(CaminhoDados()));
         }
-        catch (InvalidOperationException ex)
+        catch (ErroDePersistencia erro)
         {
-            MessageBox.Show(ex.Message, "Acefalos Bank", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(erro.Message, "Acefalos Bank", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
             return;
         }

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using MiniBanco.Core.Dominio;
 using MiniBanco.Ui.Views;
 
 namespace MiniBanco.Ui;
@@ -24,17 +26,17 @@ public partial class MainWindow : Window
         TxtTitularSidebar.Text = conta.Titular;
         TxtContaSidebar.Text = $"Conta {conta.Numero}";
 
-        Abrir("menu");
+        Navegar(Tela.Menu);
     }
 
     private void ItemMenu_Click(object sender, RoutedEventArgs e)
     {
-        Abrir((string)((RadioButton)sender).Tag);
+        Navegar((Tela)((RadioButton)sender).Tag);
     }
 
     private void Inicio_Click(object sender, RoutedEventArgs e)
     {
-        Abrir("menu");
+        Navegar(Tela.Menu);
     }
 
     private void Sair_Click(object sender, RoutedEventArgs e)
@@ -42,28 +44,29 @@ public partial class MainWindow : Window
         SairSolicitado?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Abrir(string chave)
+    private void Navegar(Tela tela)
     {
-        foreach (RadioButton item in new[] { ItemConsultar, ItemDepositar, ItemSacar, ItemExtrato })
-            item.IsChecked = (string)item.Tag == chave;
+        IEnumerable<RadioButton> itensMenu = new[] { ItemConsultar, ItemDepositar, ItemSacar, ItemExtrato };
+        foreach (RadioButton item in itensMenu)
+            item.IsChecked = (Tela)item.Tag == tela;
 
-        switch (chave)
+        switch (tela)
         {
-            case "saldo":
+            case Tela.Saldo:
                 Mostrar(new ConsultarSaldoView(_conta), "Consultar saldo");
                 break;
-            case "depositar":
+            case Tela.Depositar:
                 Mostrar(new DepositarView(_banco, _conta), "Depositar");
                 break;
-            case "sacar":
+            case Tela.Sacar:
                 Mostrar(new SacarView(_banco, _conta), "Sacar");
                 break;
-            case "extrato":
+            case Tela.Extrato:
                 Mostrar(new ExtratoView(_conta), "Mostrar extrato");
                 break;
             default:
                 var menu = new MenuPrincipalView();
-                menu.OpcaoSelecionada += (_, opcao) => Abrir(opcao);
+                menu.OpcaoSelecionada += (_, destino) => Navegar(destino);
                 Mostrar(menu, "Menu principal");
                 break;
         }
