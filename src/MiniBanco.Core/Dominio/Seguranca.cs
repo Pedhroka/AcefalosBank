@@ -1,7 +1,12 @@
 using System;
 using System.Security.Cryptography;
 
-public static class Seguranca
+namespace MiniBanco.Core.Dominio;
+
+/// <summary>
+/// Gera e verifica hashes de senha com PBKDF2 (SHA-256 e sal aleatório).
+/// </summary>
+internal static class Seguranca
 {
     private const int Iteracoes = 100_000;
     private const int TamanhoSal = 16;

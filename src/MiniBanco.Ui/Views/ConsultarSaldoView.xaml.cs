@@ -1,3 +1,4 @@
+using MiniBanco.Core.Dominio;
 using System.Windows;
 using System.Windows.Controls;
 

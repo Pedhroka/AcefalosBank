@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using MiniBanco.Core.Dominio;
 
 namespace MiniBanco.Ui.Views;
 
@@ -19,23 +20,13 @@ public partial class LoginView : UserControl
         InitializeComponent();
         _banco = banco;
 
-        if (mensagem is not null) Feedback.Mostrar(TxtMensagem, mensagem, true);
+        if (mensagem is not null) Mensagens.Mostrar(TxtMensagem, mensagem, sucesso: true);
     }
 
     private void Entrar_Click(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            if (!int.TryParse(TxtNumero.Text, out int numero))
-                throw new ArgumentException("Informe um número de conta válido.");
-
-            Conta conta = _banco.Autenticar(numero, TxtSenha.Password);
-            Entrou?.Invoke(this, conta);
-        }
-        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
-        {
-            Feedback.Mostrar(TxtMensagem, ex.Message, false);
-        }
+        Conta? conta = Mensagens.Tentar(TxtMensagem, () => _banco.Autenticar(Entrada.Numero(TxtNumero.Text), TxtSenha.Password));
+        if (conta is not null) Entrou?.Invoke(this, conta);
     }
 
     private void CriarConta_Click(object sender, RoutedEventArgs e)

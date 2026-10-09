@@ -3,4 +3,7 @@
     <Project Path="src/MiniBanco.Core/MiniBanco.Core.csproj" />
     <Project Path="src/MiniBanco.Ui/MiniBanco.Ui.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MiniBanco.Core.Testes/MiniBanco.Core.Testes.csproj" />
+  </Folder>
 </Solution>

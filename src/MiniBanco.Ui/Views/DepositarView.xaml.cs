@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using MiniBanco.Core.Dominio;
 
 namespace MiniBanco.Ui.Views;
 
@@ -22,23 +23,13 @@ public partial class DepositarView : UserControl
 
     private void Depositar_Click(object sender, RoutedEventArgs e)
     {
-        try
+        Mensagens.Executar(TxtMensagem, () =>
         {
-            if (!int.TryParse(TxtDestino.Text, out int numeroDestino))
-                throw new ArgumentException("Informe um número de conta válido.");
-            if (!Feedback.TryLerValor(TxtValor.Text, out decimal valor))
-                throw new ArgumentException("Informe um valor válido.");
+            Conta destino = _banco.Transferir(_conta.Numero, Entrada.Numero(TxtDestino.Text), Entrada.Valor(TxtValor.Text));
 
-            _banco.Transferir(_conta.Numero, numeroDestino, valor);
-            string titularDestino = _banco.BuscarConta(numeroDestino).Titular;
-
-            Feedback.Mostrar(TxtMensagem, $"Depósito de {valor:C} enviado para {titularDestino}. Novo saldo: {_conta.Saldo:C}", true);
             TxtDestino.Clear();
             TxtValor.Clear();
-        }
-        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException or KeyNotFoundException)
-        {
-            Feedback.Mostrar(TxtMensagem, ex.Message, false);
-        }
+            return $"Depósito enviado para {destino.Titular}. Novo saldo: {_conta.Saldo:C}";
+        });
     }
 }
