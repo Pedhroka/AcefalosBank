@@ -1,20 +1,14 @@
-<UserControl x:Class="MiniBanco.Ui.Views.ListarContasView"
+<UserControl x:Class="MiniBanco.Ui.Views.ExtratoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
-        <TextBlock Text="Listar contas" Style="{StaticResource TituloPagina}"/>
-        <TextBlock Text="Veja todas as contas cadastradas e seus saldos atuais." Style="{StaticResource SubtituloPagina}"/>
+        <TextBlock Text="Mostrar extrato" Style="{StaticResource TituloPagina}"/>
+        <TextBlock Text="Todas as entradas e saídas da sua conta, da mais recente para a mais antiga." Style="{StaticResource SubtituloPagina}"/>
 
         <Border Style="{StaticResource CardPadrao}">
             <StackPanel>
-                <Grid>
-                    <StackPanel>
-                        <TextBlock Text="Contas cadastradas" Style="{StaticResource TituloCard}"/>
-                        <TextBlock x:Name="TxtQuantidade" Style="{StaticResource TextoSecundario}"/>
-                    </StackPanel>
-                    <Button Content="Atualizar" Style="{StaticResource BotaoSecundario}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Click="Atualizar_Click"/>
-                </Grid>
+                <TextBlock Text="Saldo atual" FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
+                <TextBlock x:Name="TxtSaldoAtual" Style="{StaticResource ValorDestaque}" Margin="0,8,0,0"/>
 
                 <DataGrid x:Name="Tabela"
                           Margin="0,24,0,0"
@@ -29,6 +23,7 @@
                           RowHeight="48"
                           ColumnHeaderHeight="44"
                           FontSize="15"
+                          MaxHeight="420"
                           BorderBrush="{StaticResource CorBorda}"
                           BorderThickness="1"
                           Background="{StaticResource CorFundo}"
@@ -63,24 +58,37 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Número" Binding="{Binding Numero}" Width="1*"/>
-                        <DataGridTextColumn Header="Titular" Binding="{Binding Titular}" Width="3*"/>
-                        <DataGridTextColumn Header="Saldo" Binding="{Binding Saldo, StringFormat={}{0:C}}" Width="2*">
+                        <DataGridTextColumn Header="Data" Binding="{Binding Data}" Width="2*"/>
+                        <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" Width="3*"/>
+                        <DataGridTextColumn Header="Conta" Binding="{Binding Contraparte}" Width="3*"/>
+                        <DataGridTextColumn Header="Valor" Binding="{Binding Valor}" Width="2*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="HorizontalAlignment" Value="Right"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Positivo}" Value="True">
+                                            <Setter Property="Foreground" Value="{StaticResource CorSucesso}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Positivo}" Value="False">
+                                            <Setter Property="Foreground" Value="{StaticResource CorErro}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Saldo após" Binding="{Binding SaldoApos}" Width="2*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <TextBlock x:Name="TxtVazio" Text="Nenhuma conta cadastrada."
+                <TextBlock x:Name="TxtVazio" Text="Nenhuma movimentação ainda."
                            Style="{StaticResource TextoSecundario}" Margin="0,24,0,0" Visibility="Collapsed"/>
-
-                <Border Style="{StaticResource Separador}"/>
-                <TextBlock Text="Número único • Titular da conta • Saldo em reais" Style="{StaticResource TextoAjuda}"/>
             </StackPanel>
         </Border>
     </StackPanel>

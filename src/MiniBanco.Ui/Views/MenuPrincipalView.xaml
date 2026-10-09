@@ -3,49 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
         <TextBlock Text="Menu principal" Style="{StaticResource TituloPagina}"/>
-        <TextBlock Text="Escolha o que você deseja fazer no Acefalos Bank." Style="{StaticResource SubtituloPagina}"/>
+        <TextBlock Text="Escolha o que você deseja fazer na sua conta." Style="{StaticResource SubtituloPagina}"/>
 
         <Border Background="{StaticResource CorPrimaria}" CornerRadius="12" Padding="32" Margin="0,0,0,12">
             <StackPanel>
-                <TextBlock Text="O essencial para gerenciar suas contas." FontSize="20" FontWeight="SemiBold"
+                <TextBlock Text="O essencial para gerenciar sua conta." FontSize="20" FontWeight="SemiBold"
                            Foreground="White" Margin="0,0,0,8"/>
-                <TextBlock Text="Cadastre contas, consulte saldos e realize depósitos e saques."
+                <TextBlock Text="Consulte o saldo, faça depósitos e saques e acompanhe seu extrato."
                            FontSize="14" Foreground="White" Opacity="0.85"/>
             </StackPanel>
         </Border>
 
-        <UniformGrid Columns="3" Margin="-12,12,-12,0">
-            <Button Style="{StaticResource CardAcao}" Tag="criar" Click="Card_Click">
-                <StackPanel>
-                    <TextBlock Text="Criar conta" Style="{StaticResource TituloCard}"/>
-                    <TextBlock Text="Cadastre um titular, um número único e o saldo inicial." Style="{StaticResource TextoSecundario}"/>
-                </StackPanel>
-            </Button>
-            <Button Style="{StaticResource CardAcao}" Tag="consultar" Click="Card_Click">
+        <UniformGrid Columns="2" Margin="-12,12,-12,0">
+            <Button Style="{StaticResource CardAcao}" Tag="saldo" Click="Card_Click">
                 <StackPanel>
                     <TextBlock Text="Consultar saldo" Style="{StaticResource TituloCard}"/>
-                    <TextBlock Text="Encontre uma conta e confira o saldo disponível." Style="{StaticResource TextoSecundario}"/>
+                    <TextBlock Text="Veja o saldo disponível da sua conta." Style="{StaticResource TextoSecundario}"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource CardAcao}" Tag="depositar" Click="Card_Click">
                 <StackPanel>
                     <TextBlock Text="Depositar" Style="{StaticResource TituloCard}"/>
-                    <TextBlock Text="Adicione um valor positivo ao saldo de uma conta." Style="{StaticResource TextoSecundario}"/>
+                    <TextBlock Text="Envie um valor da sua conta para outra conta." Style="{StaticResource TextoSecundario}"/>
                 </StackPanel>
             </Button>
-        </UniformGrid>
-
-        <UniformGrid Columns="2" Margin="-12,0,-12,0">
             <Button Style="{StaticResource CardAcao}" Tag="sacar" Click="Card_Click">
                 <StackPanel>
                     <TextBlock Text="Sacar" Style="{StaticResource TituloCard}"/>
                     <TextBlock Text="Retire um valor dentro do saldo disponível." Style="{StaticResource TextoSecundario}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource CardAcao}" Tag="listar" Click="Card_Click">
+            <Button Style="{StaticResource CardAcao}" Tag="extrato" Click="Card_Click">
                 <StackPanel>
-                    <TextBlock Text="Listar contas" Style="{StaticResource TituloCard}"/>
-                    <TextBlock Text="Veja os números, titulares e saldos cadastrados." Style="{StaticResource TextoSecundario}"/>
+                    <TextBlock Text="Mostrar extrato" Style="{StaticResource TituloCard}"/>
+                    <TextBlock Text="Veja todas as entradas e saídas com data e saldo." Style="{StaticResource TextoSecundario}"/>
                 </StackPanel>
             </Button>
         </UniformGrid>

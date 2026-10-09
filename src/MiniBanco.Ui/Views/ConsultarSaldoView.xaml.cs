@@ -4,37 +4,37 @@ using System.Windows.Controls;
 namespace MiniBanco.Ui.Views;
 
 /// <summary>
-/// Busca uma conta pelo número e exibe titular e saldo.
+/// Exibe o saldo da conta logada, oculto por padrão e revelado pelo ícone de olho.
 /// </summary>
 public partial class ConsultarSaldoView : UserControl
 {
-    private readonly Banco _banco;
+    private const string IconeMostrar = "";
+    private const string IconeOcultar = "";
+    private const string SaldoOculto = "R$ ••••••";
 
-    public ConsultarSaldoView(Banco banco)
+    private readonly Conta _conta;
+    private bool _visivel;
+
+    public ConsultarSaldoView(Conta conta)
     {
         InitializeComponent();
-        _banco = banco;
+        _conta = conta;
+
+        TxtTitular.Text = conta.Titular;
+        TxtConta.Text = $"Conta {conta.Numero}";
+        AtualizarSaldo();
     }
 
-    private void Buscar_Click(object sender, RoutedEventArgs e)
+    private void Olho_Click(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            if (!int.TryParse(TxtNumero.Text, out int numero))
-                throw new ArgumentException("Informe um número de conta válido.");
+        _visivel = !_visivel;
+        AtualizarSaldo();
+    }
 
-            Conta conta = _banco.BuscarConta(numero);
-
-            TxtTitular.Text = conta.Titular;
-            TxtBadgeConta.Text = $"Conta {conta.Numero}";
-            TxtSaldo.Text = conta.Saldo.ToString("C");
-            PainelResultado.Visibility = Visibility.Visible;
-            Feedback.Ocultar(TxtMensagem);
-        }
-        catch (Exception ex) when (ex is ArgumentException or KeyNotFoundException)
-        {
-            PainelResultado.Visibility = Visibility.Collapsed;
-            Feedback.Mostrar(TxtMensagem, ex.Message, false);
-        }
+    private void AtualizarSaldo()
+    {
+        TxtSaldo.Text = _visivel ? _conta.Saldo.ToString("C") : SaldoOculto;
+        TxtIconeOlho.Text = _visivel ? IconeOcultar : IconeMostrar;
+        BtnOlho.ToolTip = _visivel ? "Ocultar saldo" : "Mostrar saldo";
     }
 }

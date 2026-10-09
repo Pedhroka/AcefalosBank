@@ -1,14 +1,18 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace MiniBanco.Ui.Views;
 
 /// <summary>
-/// Formulário para cadastrar uma nova conta.
+/// Formulário para abrir uma nova conta.
 /// </summary>
 public partial class CriarContaView : UserControl
 {
     private readonly Banco _banco;
+
+    public event EventHandler? Voltou;
+    public event EventHandler<int>? ContaCriada;
 
     public CriarContaView(Banco banco)
     {
@@ -22,14 +26,13 @@ public partial class CriarContaView : UserControl
         {
             if (!int.TryParse(TxtNumero.Text, out int numero))
                 throw new ArgumentException("Informe um número inteiro.");
-            if (string.IsNullOrWhiteSpace(TxtTitular.Text))
-                throw new ArgumentException("Informe o titular da conta.");
+            if (TxtSenha.Password != TxtConfirmarSenha.Password)
+                throw new ArgumentException("As senhas não conferem.");
             if (!Feedback.TryLerValor(TxtSaldo.Text, out decimal saldo))
                 throw new ArgumentException("Informe um saldo inicial válido.");
 
-            _banco.CriarConta(numero, TxtTitular.Text.Trim(), saldo);
-            Feedback.Mostrar(TxtMensagem, "Conta criada com sucesso.", true);
-            Limpar();
+            _banco.CriarConta(numero, TxtTitular.Text, TxtSenha.Password, saldo);
+            ContaCriada?.Invoke(this, numero);
         }
         catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
         {
@@ -37,16 +40,8 @@ public partial class CriarContaView : UserControl
         }
     }
 
-    private void Cancelar_Click(object sender, RoutedEventArgs e)
+    private void Voltar_Click(object sender, RoutedEventArgs e)
     {
-        Limpar();
-        Feedback.Ocultar(TxtMensagem);
-    }
-
-    private void Limpar()
-    {
-        TxtNumero.Clear();
-        TxtTitular.Clear();
-        TxtSaldo.Clear();
+        Voltou?.Invoke(this, EventArgs.Empty);
     }
 }

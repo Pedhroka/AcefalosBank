@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using MiniBanco.Ui.Views;
@@ -5,16 +6,24 @@ using MiniBanco.Ui.Views;
 namespace MiniBanco.Ui;
 
 /// <summary>
-/// Janela principal: menu lateral e área de conteúdo onde as telas são exibidas.
+/// Área logada: menu lateral e área de conteúdo onde as telas são exibidas.
 /// </summary>
 public partial class MainWindow : Window
 {
     private readonly Banco _banco;
+    private readonly Conta _conta;
 
-    public MainWindow(Banco banco)
+    public event EventHandler? SairSolicitado;
+
+    public MainWindow(Banco banco, Conta conta)
     {
         InitializeComponent();
         _banco = banco;
+        _conta = conta;
+
+        TxtTitularSidebar.Text = conta.Titular;
+        TxtContaSidebar.Text = $"Conta {conta.Numero}";
+
         Abrir("menu");
     }
 
@@ -30,30 +39,27 @@ public partial class MainWindow : Window
 
     private void Sair_Click(object sender, RoutedEventArgs e)
     {
-        Close();
+        SairSolicitado?.Invoke(this, EventArgs.Empty);
     }
 
     private void Abrir(string chave)
     {
-        foreach (RadioButton item in new[] { ItemCriar, ItemConsultar, ItemDepositar, ItemSacar, ItemListar })
+        foreach (RadioButton item in new[] { ItemConsultar, ItemDepositar, ItemSacar, ItemExtrato })
             item.IsChecked = (string)item.Tag == chave;
 
         switch (chave)
         {
-            case "criar":
-                Mostrar(new CriarContaView(_banco), "Criar conta");
-                break;
-            case "consultar":
-                Mostrar(new ConsultarSaldoView(_banco), "Consultar saldo");
+            case "saldo":
+                Mostrar(new ConsultarSaldoView(_conta), "Consultar saldo");
                 break;
             case "depositar":
-                Mostrar(new DepositarView(_banco), "Depositar");
+                Mostrar(new DepositarView(_banco, _conta), "Depositar");
                 break;
             case "sacar":
-                Mostrar(new SacarView(_banco), "Sacar");
+                Mostrar(new SacarView(_banco, _conta), "Sacar");
                 break;
-            case "listar":
-                Mostrar(new ListarContasView(_banco), "Listar contas");
+            case "extrato":
+                Mostrar(new ExtratoView(_conta), "Mostrar extrato");
                 break;
             default:
                 var menu = new MenuPrincipalView();

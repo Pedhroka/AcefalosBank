@@ -23,7 +23,7 @@ public class RepositorioContas
         {
             List<ContaRegistro>? registros = JsonSerializer.Deserialize<List<ContaRegistro>>(File.ReadAllText(_caminho));
             return (registros ?? new List<ContaRegistro>())
-                .Select(r => new Conta(r.Numero, r.Titular, r.Saldo))
+                .Select(r => new Conta(r.Numero, r.Titular, r.SenhaHash ?? string.Empty, r.Saldo, r.Movimentos))
                 .ToList();
         }
         catch (JsonException)
@@ -34,7 +34,9 @@ public class RepositorioContas
 
     public void Salvar(IEnumerable<Conta> contas)
     {
-        var registros = contas.Select(c => new ContaRegistro(c.Numero, c.Titular, c.Saldo)).ToList();
+        var registros = contas
+            .Select(c => new ContaRegistro(c.Numero, c.Titular, c.SenhaHash, c.Saldo, c.Movimentos.ToList()))
+            .ToList();
         string json = JsonSerializer.Serialize(registros, Opcoes);
 
         string? pasta = Path.GetDirectoryName(_caminho);
