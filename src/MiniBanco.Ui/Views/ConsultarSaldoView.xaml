@@ -1,0 +1,71 @@
+<UserControl x:Class="MiniBanco.Ui.Views.ConsultarSaldoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel>
+        <TextBlock Text="Consultar saldo" Style="{StaticResource TituloPagina}"/>
+        <TextBlock Text="Encontre uma conta pelo número e veja o saldo disponível." Style="{StaticResource SubtituloPagina}"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <Border Style="{StaticResource CardPadrao}">
+                    <StackPanel>
+                        <TextBlock Text="Buscar conta" Style="{StaticResource TituloCard}"/>
+                        <TextBlock Text="Informe o número da conta que deseja consultar." Style="{StaticResource TextoSecundario}"/>
+
+                        <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}"/>
+                            <Button Grid.Column="1" Content="Buscar" Style="{StaticResource BotaoPrimario}"
+                                    Margin="12,0,0,0" Click="Buscar_Click"/>
+                        </Grid>
+
+                        <TextBlock x:Name="TxtMensagem" Visibility="Collapsed"/>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Text="Resultado da consulta" Style="{StaticResource RotuloCampo}" Margin="0,32,0,12"/>
+
+                <Border x:Name="PainelResultado" Style="{StaticResource CardPadrao}" Visibility="Collapsed">
+                    <StackPanel>
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="Titular" FontSize="12" Foreground="{StaticResource CorTextoSecundario}"/>
+                                <TextBlock x:Name="TxtTitular" FontSize="20" FontWeight="SemiBold"
+                                           Foreground="{StaticResource CorTexto}" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <Border Style="{StaticResource PilulaCabecalho}" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <TextBlock x:Name="TxtBadgeConta" FontSize="13" FontWeight="SemiBold"
+                                           Foreground="{StaticResource CorPrimaria}"/>
+                            </Border>
+                        </Grid>
+
+                        <Border Style="{StaticResource Separador}"/>
+
+                        <TextBlock Text="Saldo disponível" FontSize="14" Foreground="{StaticResource CorTextoSecundario}"/>
+                        <TextBlock x:Name="TxtSaldo" Style="{StaticResource ValorDestaque}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <Border Grid.Column="1" Style="{StaticResource CardInfo}" Margin="24,0,0,0" VerticalAlignment="Top">
+                <StackPanel>
+                    <TextBlock Text="Seu saldo, com clareza" FontSize="20" FontWeight="SemiBold"
+                               Foreground="{StaticResource CorPrimaria}" Margin="0,0,0,8"/>
+                    <TextBlock Text="A consulta mostra o titular e o saldo atual da conta encontrada."
+                               Style="{StaticResource TextoSecundario}" Margin="0,0,0,24"/>
+                    <TextBlock Text="✓  Use o número inteiro da conta." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
+                    <TextBlock Text="✓  Consultar não altera o saldo." Style="{StaticResource TextoSecundario}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </StackPanel>
+</UserControl>
