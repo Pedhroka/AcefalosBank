@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-class Banco
+public class Banco
 {
     private readonly Dictionary<int, Conta> _contas = new Dictionary<int, Conta>();
 
@@ -14,7 +14,7 @@ class Banco
 
     public Conta BuscarConta(int numero)
     {
-        if (!_contas.TryGetValue(numero, out Conta conta)) throw new KeyNotFoundException("Conta não encontrada.");
+        if (!_contas.TryGetValue(numero, out Conta? conta)) throw new KeyNotFoundException("Conta não encontrada.");
         return conta;
     }
 

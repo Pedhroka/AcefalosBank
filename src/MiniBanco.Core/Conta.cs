@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-class Conta
+public class Conta
 {
     public int Numero { get; }
     public string Titular { get; }
