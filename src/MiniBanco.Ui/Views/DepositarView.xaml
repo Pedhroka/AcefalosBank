@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
     <StackPanel>
         <TextBlock Text="Depositar" Style="{StaticResource TituloPagina}"/>
-        <TextBlock Text="Adicione um valor ao saldo de uma conta cadastrada." Style="{StaticResource SubtituloPagina}"/>
+        <TextBlock Text="Envie um valor da sua conta para outra conta cadastrada." Style="{StaticResource SubtituloPagina}"/>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -15,11 +15,11 @@
             <Border Style="{StaticResource CardPadrao}" VerticalAlignment="Top">
                 <StackPanel>
                     <TextBlock Text="Dados do depósito" Style="{StaticResource TituloCard}"/>
-                    <TextBlock Text="Informe a conta e o valor que será depositado." Style="{StaticResource TextoSecundario}"/>
+                    <TextBlock x:Name="TxtOrigem" Style="{StaticResource TextoSecundario}"/>
 
-                    <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1002"/>
-                    <TextBlock Text="A conta deve estar cadastrada no Acefalos Bank." Style="{StaticResource TextoAjuda}"/>
+                    <TextBlock Text="Número da conta de destino" Style="{StaticResource RotuloCampo}"/>
+                    <TextBox x:Name="TxtDestino" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1002"/>
+                    <TextBlock Text="A conta de destino deve estar cadastrada no Acefalos Bank." Style="{StaticResource TextoAjuda}"/>
 
                     <TextBlock Text="Valor" Style="{StaticResource RotuloCampo}"/>
                     <TextBox x:Name="TxtValor" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: R$ 150,00"/>
@@ -35,13 +35,13 @@
 
             <Border Grid.Column="1" Style="{StaticResource CardInfo}" Margin="24,0,0,0" VerticalAlignment="Top">
                 <StackPanel>
-                    <TextBlock Text="Valor somado ao saldo" FontSize="20" FontWeight="SemiBold"
+                    <TextBlock Text="Como funciona" FontSize="20" FontWeight="SemiBold"
                                Foreground="{StaticResource CorPrimaria}" Margin="0,0,0,8"/>
-                    <TextBlock Text="Após o depósito, o resultado apresenta o novo saldo da conta."
+                    <TextBlock Text="O valor sai da sua conta e entra na conta informada."
                                Style="{StaticResource TextoSecundario}" Margin="0,0,0,24"/>
-                    <TextBlock Text="✓  O valor do depósito deve ser positivo." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
-                    <TextBlock Text="✓  Confira o número antes de depositar." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
-                    <TextBlock Text="✓  O saldo é atualizado após a operação." Style="{StaticResource TextoSecundario}"/>
+                    <TextBlock Text="✓  O valor deve ser positivo." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
+                    <TextBlock Text="✓  Confira o número da conta de destino." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
+                    <TextBlock Text="✓  A operação aparece no extrato das duas contas." Style="{StaticResource TextoSecundario}"/>
                 </StackPanel>
             </Border>
         </Grid>

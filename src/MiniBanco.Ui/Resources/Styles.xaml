@@ -134,6 +134,42 @@
         </Setter>
     </Style>
 
+    <!-- Campo de senha -->
+    <Style x:Key="CampoSenha" TargetType="PasswordBox">
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="Padding" Value="12,0"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="{StaticResource CorTexto}"/>
+        <Setter Property="Background" Value="{StaticResource CorFundo}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource CorBorda}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border x:Name="Borda"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{StaticResource RaioPadrao}">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Focusable="False"
+                                      Padding="{TemplateBinding Padding}"
+                                      VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="Borda" Property="BorderBrush" Value="{StaticResource CorPrimaria}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Borda" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Botão primário -->
     <Style x:Key="BotaoPrimario" TargetType="Button">
         <Setter Property="Height" Value="48"/>

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MiniBanco.Ui.Recursos">
     <StackPanel>
         <TextBlock Text="Sacar" Style="{StaticResource TituloPagina}"/>
-        <TextBlock Text="Retire um valor respeitando o saldo disponível da conta." Style="{StaticResource SubtituloPagina}"/>
+        <TextBlock Text="Retire um valor respeitando o saldo disponível da sua conta." Style="{StaticResource SubtituloPagina}"/>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -15,11 +15,7 @@
             <Border Style="{StaticResource CardPadrao}" VerticalAlignment="Top">
                 <StackPanel>
                     <TextBlock Text="Dados do saque" Style="{StaticResource TituloCard}"/>
-                    <TextBlock Text="Informe a conta e o valor que deseja sacar." Style="{StaticResource TextoSecundario}"/>
-
-                    <TextBlock Text="Número da conta" Style="{StaticResource RotuloCampo}"/>
-                    <TextBox x:Name="TxtNumero" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: 1003"/>
-                    <TextBlock Text="A conta deve estar cadastrada no Acefalos Bank." Style="{StaticResource TextoAjuda}"/>
+                    <TextBlock x:Name="TxtOrigem" Style="{StaticResource TextoSecundario}"/>
 
                     <TextBlock Text="Valor" Style="{StaticResource RotuloCampo}"/>
                     <TextBox x:Name="TxtValor" Style="{StaticResource CampoTexto}" local:Dica.Texto="Ex.: R$ 150,00"/>
@@ -41,7 +37,7 @@
                                Style="{StaticResource TextoSecundario}" Margin="0,0,0,24"/>
                     <TextBlock Text="✓  O valor do saque deve ser positivo." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
                     <TextBlock Text="✓  O valor não pode ultrapassar o saldo." Style="{StaticResource TextoSecundario}" Margin="0,0,0,12"/>
-                    <TextBlock Text="✓  Confira o número antes de sacar." Style="{StaticResource TextoSecundario}"/>
+                    <TextBlock Text="✓  A operação aparece no extrato." Style="{StaticResource TextoSecundario}"/>
                 </StackPanel>
             </Border>
         </Grid>

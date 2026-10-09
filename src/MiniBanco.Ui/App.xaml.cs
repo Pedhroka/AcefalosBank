@@ -8,7 +8,7 @@ using System.Windows.Markup;
 namespace MiniBanco.Ui;
 
 /// <summary>
-/// Inicializa o banco a partir do arquivo JSON e abre a janela principal.
+/// Inicializa o banco a partir do arquivo JSON e controla a troca entre login e área logada.
 /// </summary>
 public partial class App : Application
 {
@@ -18,16 +18,45 @@ public partial class App : Application
 
         ConfigurarCultura();
 
+        Banco banco;
         try
         {
-            var banco = new Banco(new RepositorioContas(CaminhoDados()));
-            new MainWindow(banco).Show();
+            banco = new Banco(new RepositorioContas(CaminhoDados()));
         }
         catch (InvalidOperationException ex)
         {
             MessageBox.Show(ex.Message, "Acefalos Bank", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
+            return;
         }
+
+        AbrirLogin(banco);
+    }
+
+    private void AbrirLogin(Banco banco)
+    {
+        var login = new LoginWindow(banco);
+        login.Entrou += (_, conta) =>
+        {
+            AbrirPrincipal(banco, conta);
+            login.Close();
+        };
+
+        MainWindow = login;
+        login.Show();
+    }
+
+    private void AbrirPrincipal(Banco banco, Conta conta)
+    {
+        var principal = new MainWindow(banco, conta);
+        principal.SairSolicitado += (_, _) =>
+        {
+            AbrirLogin(banco);
+            principal.Close();
+        };
+
+        MainWindow = principal;
+        principal.Show();
     }
 
     private static void ConfigurarCultura()
